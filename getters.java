@@ -1,4 +1,4 @@
-package paquetote.clasePersona;
+package paquetote.clasePersona.ClasePersona;
 import java.util.Scanner;
 public class getters {
        public static void corregirDatos(int id,persona usuario, Scanner sc) {
@@ -54,7 +54,7 @@ public class getters {
         }
     }
     
-
+    //Metodo de datos para crear un objeto
     public static persona crearObjeto(Scanner sc) {
         // Cambiamos el alcance de las variables a nivel de clase
         System.out.print("Ingrese el nombre: ");

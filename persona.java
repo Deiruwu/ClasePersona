@@ -1,5 +1,4 @@
-package paquetote.clasePersona;
-
+package paquetote.clasePersona.ClasePersona;
 public class persona {
     public String nombre;
     public String apellidoPaterno;
@@ -31,6 +30,32 @@ public class persona {
         this.domicilio=usuario1.domicilio;
         this.estatura=usuario1.estatura;
     }
+
+
+    //ordenamiento
+public static void ordenamiento(persona[] usuario, boolean edadOApellido, boolean Mayor_Menor) {
+for (int i = 0; i< usuario.length; i++) {
+    for (int j = 0; j < usuario.length -1; j++) {
+boolean intercambiar = false;
+
+        if (edadOApellido) {
+                int comparacionEdad = usuario[j].edad - usuario[j + 1].edad;
+                intercambiar = (Mayor_Menor) ? comparacionEdad < 0 : comparacionEdad > 0;
+            } else {
+                int comparacionApellido = usuario[j].apellidoPaterno.compareTo(usuario[j + 1].apellidoPaterno);
+                intercambiar = (Mayor_Menor) ? comparacionApellido < 0 : comparacionApellido > 0;
+                }
+
+        if (intercambiar) {
+            persona temp = usuario[j];
+            usuario[j] = usuario[j+1];
+            usuario[j+1] = temp;
+
+            }
+        }
+    }
+}
+
 
     //Modulo para vizualizar la información
     public void mostrarInformacion(int contador) {
