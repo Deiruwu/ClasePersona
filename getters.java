@@ -1,4 +1,4 @@
-package paquetote.clasePersona.ClasePersona;
+package paquetote.ClasePersona;
 import java.util.Scanner;
 public class getters {
        public static void corregirDatos(int id,persona usuario, Scanner sc) {
