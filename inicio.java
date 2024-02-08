@@ -4,28 +4,27 @@ public class inicio {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("*--- Bienvenido al programa ---*");
+        System.out.println("*---------------------- Bienvenido al programa ----------------------*");
         System.out.print("Por favor, ingrese el número de usuarios con los que desea trabajar: ");
         int n = sc.nextInt();
         sc.nextLine();
 
         persona[] usuario = new persona[n];
-
-        System.out.println("¡De acuerdo! Se creó un arreglo de " + n + " usuarios");
-
+    
         //ciclo para instanciar n objetos de la clase persona
         for (int i = 0; i < usuario.length; i++) {
+            System.out.println("*--------------------------------------------------------------------*");
+            System.out.println("*----------------------Menú de manejo de datos-----------------------*");
             System.out.println("Ingrese los datos del usuario " + (i + 1) + ":");
-            usuario[i] = getters.crearObjeto(sc); //Llama al metodo que nos solicitará los datos para crear un objeto
-            System.out.println();
+            usuario[i] = utilidadesPersona.crearObjeto(sc);
         }
 
-        // Crear usuario11 usando el constructor copia
+        // Crear usuarioCopia usando el constructor copia
         persona usuarioCopia = new persona(usuario[0]);
 
         char opcion;
 
-        System.out.println("*------Menú de maenjo de datos------*");
+        
         do {
         System.out.println("A Mostrar datos");
         System.out.println("B Modificar datos");
@@ -152,7 +151,7 @@ public class inicio {
 }
 
     public static void envioCorregirDatos(persona[] usuario, int numeroPersona, Scanner sc){
-            getters.corregirDatos(numeroPersona, usuario[numeroPersona-1], sc);
+            utilidadesPersona.corregirDatos(numeroPersona, usuario[numeroPersona-1], sc);
             System.out.println("Datos corregidos:");
             usuario[numeroPersona - 1].mostrarInformacion(numeroPersona);
 

@@ -1,6 +1,9 @@
 package paquetote.ClasePersona;
 import java.util.Scanner;
-public class getters {
+public class utilidadesPersona {
+
+
+
        public static void corregirDatos(int id,persona usuario, Scanner sc) {
         System.out.println("Datos actuales:");
         usuario.mostrarInformacion(id);
