@@ -31,7 +31,6 @@ public class persona {
         this.estatura=usuario1.estatura;
     }
 
-
     //ordenamiento
     public static void ordenamiento(persona[] usuario, boolean edadOApellido, boolean Mayor_Menor) {
     for (int i = 0; i< usuario.length; i++) {
@@ -55,7 +54,6 @@ public class persona {
         }
     }
 
-
     //Modulo para vizualizar la información
     public void mostrarInformacion(int contador) {
 
@@ -63,7 +61,6 @@ public class persona {
         System.out.println("Datos del usuario copia: ");
     else 
         System.out.println("Datos del usuario " + contador + ": ");
-    
         System.out.println("Nombre completo: " + nombreCompleto());
         System.out.println("Edad: " + edad);
         System.out.println("Género: " + genero);
@@ -74,9 +71,6 @@ public class persona {
     public String nombreCompleto() {
         return nombre + " " + apellidoPaterno + " " + apellidoMaterno;
     }
-
-
-
 
 
     public void setNombre(String nombre) {
