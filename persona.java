@@ -58,7 +58,12 @@ public class persona {
 
     //Modulo para vizualizar la información
     public void mostrarInformacion(int contador) {
-        System.out.println("Datos del usuario "+contador);
+
+    if (contador == 999)
+        System.out.println("Datos del usuario copia: ");
+    else 
+        System.out.println("Datos del usuario " + contador + ": ");
+    
         System.out.println("Nombre completo: " + nombreCompleto());
         System.out.println("Edad: " + edad);
         System.out.println("Género: " + genero);
@@ -69,6 +74,7 @@ public class persona {
     public String nombreCompleto() {
         return nombre + " " + apellidoPaterno + " " + apellidoMaterno;
     }
+
 
 
 
