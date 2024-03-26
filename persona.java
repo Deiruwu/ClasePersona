@@ -1,12 +1,12 @@
 package paquetote.ClasePersona;
 public class persona {
-    public String nombre;
+     String nombre;
     public String apellidoPaterno;
     public String apellidoMaterno;  
     public int edad;
     public char genero;
     public String domicilio;
-    public double estatura;
+    double estatura;
 
 
     // Metodo constructo

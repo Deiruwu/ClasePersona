@@ -103,8 +103,9 @@ class MenuManager {
                         utilidadesPersona.envioCorregirDatos(usuario, numeroPersona, sc);
                         break;
                     case 'B':
-                        System.out.println("Ingresa el/los nombre(s) y apellido paterno de la persona que desea corregir");
+                        System.out.println("Ingresa el/los nombre(s): ");
                         String nombreBusqueda = sc.nextLine();
+                        System.out.println("Ingresa el apellido paterno: ");
                         String apellidoBusqueda = sc.nextLine();
                         boolean encontrado = false;
 
