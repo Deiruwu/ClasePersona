@@ -1,8 +1,15 @@
-package paquetote.ClasePersona;
+package ClasePersona;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 class MenuManager {
+    /**
+     * Método que muestra el menú de manejo de datos y realiza las operaciones correspondientes.
+     * 
+     * @param usuario       Arreglo de objetos de tipo persona que contiene los usuarios.
+     * @param usuarioCopia  Objeto de tipo persona que representa una copia del usuario.
+     * @param sc            Objeto de tipo Scanner utilizado para leer la entrada del usuario.
+     */
     public void menuManejoDatos(persona[] usuario, persona usuarioCopia, Scanner sc) {
         char opcion;
 
@@ -32,6 +39,12 @@ class MenuManager {
         usuarioCopia.mostrarInformacion(999);
     }
 
+    /**
+     * Muestra un menú para organizar y previsualizar los datos de un arreglo de personas.
+     * 
+     * @param usuario el arreglo de personas a organizar y previsualizar
+     * @param sc el objeto Scanner utilizado para leer la entrada del usuario
+     */
     public void menuOrganizar(persona[] usuario, Scanner sc) {
         char opcion;
         do {
@@ -83,6 +96,12 @@ class MenuManager {
         } while (opcion != 'E');
     }
 
+    /**
+     * Método que muestra un menú para corregir los datos de una persona.
+     * 
+     * @param usuario el arreglo de personas
+     * @param sc el objeto Scanner para leer la entrada del usuario
+     */
     public void menuCorregir(persona[] usuario, Scanner sc) {
         char opcion;
         int numeroPersona;
@@ -139,6 +158,11 @@ class MenuManager {
         } while (opcion != 'C');
     }
 
+    /**
+     * Método que muestra los datos de un arreglo de objetos persona.
+     * 
+     * @param usuario El arreglo de objetos persona.
+     */
     public static void cicloDatos(persona[] usuario) {
         //ciclo para mostrar datos
         System.out.println("*--------------------------------------------*");
@@ -148,4 +172,3 @@ class MenuManager {
         }
     }
 }
-

@@ -1,8 +1,15 @@
-package paquetote.ClasePersona;
+package ClasePersona;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class inicio {
+    /**
+     * Método principal que inicia la ejecución del programa.
+     * Solicita al usuario el número de usuarios con los que desea trabajar,
+     * crea los objetos de la clase persona correspondientes y gestiona el menú de opciones.
+     * 
+     * @param args los argumentos de la línea de comandos
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 

@@ -1,12 +1,16 @@
-package paquetote.ClasePersona;
+package ClasePersona;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class utilidadesPersona {
-
-    // Método de datos para crear un objeto
+    /**
+     * Crea un objeto de tipo persona con los datos ingresados por el usuario.
+     * 
+     * @param sc el objeto Scanner utilizado para leer la entrada del usuario.
+     * @param i el índice del usuario actual.
+     * @return el objeto persona creado con los datos ingresados.
+     */
     public static persona crearObjeto(Scanner sc, int i) {
-
         boolean exception = false;
         persona nuevoUsuario = null;
         do {
@@ -52,6 +56,14 @@ public class utilidadesPersona {
         return nuevoUsuario;
     }
 
+
+    /**
+    * Corrige los datos de un usuario en base a la opción seleccionada.
+    *
+    * @param id el ID del usuario
+    * @param usuario el objeto persona que representa al usuario
+    * @param sc el objeto Scanner para leer la entrada del usuario
+    */
     public static void corregirDatos(int id, persona usuario, Scanner sc) {
         System.out.println("Datos actuales:");
         usuario.mostrarInformacion(id);
@@ -109,9 +121,15 @@ public class utilidadesPersona {
         }
     }
 
+
+    /**
+     * Muestra un menú para organizar y previsualizar los datos de un arreglo de personas.
+     * 
+     * @param usuario el arreglo de personas a organizar y previsualizar
+     * @param sc el objeto Scanner utilizado para leer la entrada del usuario
+     */
     public static void menuOrganizar(persona[] usuario, Scanner sc) {
         char opciones;
-
         do {
             try {
                 System.out.println("¿Cómo deseas previsualizar los datos?");
@@ -167,6 +185,13 @@ public class utilidadesPersona {
         } while (opciones != 'E');
     }
 
+
+    /**
+     * Muestra un menú para corregir los datos de una persona en base a diferentes opciones de búsqueda.
+     * 
+     * @param usuario el arreglo de personas
+     * @param sc el objeto Scanner para leer la entrada del usuario
+     */
     public static void menuCorregir(persona[] usuario, Scanner sc) {
         char opcion;
         int numeroPersona;
@@ -218,6 +243,13 @@ public class utilidadesPersona {
         } while (opcion != 'C');
     }
 
+    /**
+     * Envía los datos de una persona para corregirlos y muestra los datos corregidos.
+     * 
+     * @param usuario el arreglo de personas
+     * @param numeroPersona el número de la persona a corregir
+     * @param sc el objeto Scanner para leer la entrada del usuario
+     */
     public static void envioCorregirDatos(persona[] usuario, int numeroPersona, Scanner sc) {
         try {
             corregirDatos(numeroPersona, usuario[numeroPersona - 1], sc);
