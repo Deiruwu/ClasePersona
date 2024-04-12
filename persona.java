@@ -3,7 +3,7 @@ package ClasePersona;
      * Clase que representa a una persona.
      */
 public class persona {
-     String nombre;
+    String nombre;
     public String apellidoPaterno;
     public String apellidoMaterno;  
     public int edad;
@@ -11,26 +11,36 @@ public class persona {
     public String domicilio;
     double estatura;
 
-        /**
-         * Constructor de la clase persona.
-         * 
-         * @param nombre el nombre de la persona
-         * @param apellidoPaterno el apellido paterno de la persona
-         * @param apellidoMaterno el apellido materno de la persona
-         * @param edad la edad de la persona
-         * @param genero el género de la persona
-         * @param domicilio el domicilio de la persona
-         * @param estatura la estatura de la persona
-         */
-        public persona(String nombre, String apellidoPaterno, String apellidoMaterno, int edad, char genero, String domicilio, double estatura) {
-            this.nombre = nombre;
-            this.apellidoPaterno = apellidoPaterno;
-            this.apellidoMaterno = apellidoMaterno;
-            this.edad = edad;
-            this.genero = genero;
-            this.domicilio = domicilio;
-            this.estatura = estatura;
-        }
+    /**
+     * Constructor de la clase persona.
+     * 
+     * @param nombre el nombre de la persona
+     * @param apellidoPaterno el apellido paterno de la persona
+     * @param apellidoMaterno el apellido materno de la persona
+     * @param edad la edad de la persona
+     * @param genero el género de la persona
+     * @param domicilio el domicilio de la persona
+     * @param estatura la estatura de la persona
+     */
+    public persona(String nombre, String apellidoPaterno, String apellidoMaterno, int edad, char genero, String domicilio, double estatura) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.edad = edad;
+        this.genero = genero;
+        this.domicilio = domicilio;
+        this.estatura = estatura;
+    }
+
+    public persona() {
+        this.nombre = null;
+        this.apellidoPaterno =null;
+        this.apellidoMaterno = null;
+        this.edad = 0;
+        this.genero = ' ';
+        this.domicilio = null;
+        this.estatura = 0.0;
+    }
 
     /**
      * Constructor de la clase persona.
@@ -81,18 +91,7 @@ public class persona {
      * 
      * @param contador el número de la persona
      */
-    public void mostrarInformacion(int contador) {
 
-    if (contador == 999)
-        System.out.println("Datos del usuario copia: ");
-    else 
-        System.out.println("Datos del usuario " + contador + ": ");
-        System.out.println("Nombre completo: " + nombreCompleto());
-        System.out.println("Edad: " + edad);
-        System.out.println("Género: " + genero);
-        System.out.println("Domicilio: " + domicilio);
-        System.out.println("Estatura: " + estatura);
-    }
 
     /**
      * Devuelve el nombre completo de la persona.
@@ -100,7 +99,14 @@ public class persona {
      * @return el nombre completo de la persona
      */
     public String nombreCompleto() {
-        return nombre + " " + apellidoPaterno + " " + apellidoMaterno;
+        return (nombre != null && apellidoMaterno != null && apellidoPaterno != null) 
+        ? String.format("%s %s %s", nombre, apellidoPaterno, apellidoMaterno) : "No se ha ingresado un nombre";
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Nombre Completo: %s\n\tEdad: %d\n\tGénero: %c\n\tDomicilio: %s\n\tEstatura: %.2f",
+        nombreCompleto(), edad, genero, domicilio != null ? domicilio : "Sin domicilio", estatura);
     }
 
     public void setNombre(String nombre) {
@@ -130,4 +136,4 @@ public class persona {
     public void setEstatura(double estatura) {
         this.estatura = estatura;
     }
-}
+}   

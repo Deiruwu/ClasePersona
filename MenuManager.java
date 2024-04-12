@@ -36,7 +36,7 @@ class MenuManager {
         } while (opcion != 'C');
 
         // Llamada al modulo mostrar información para usuario2
-        usuarioCopia.mostrarInformacion(999);
+        System.out.println(usuarioCopia);
     }
 
     /**
@@ -167,7 +167,7 @@ class MenuManager {
         //ciclo para mostrar datos
         System.out.println("*--------------------------------------------*");
         for (int j = 0; j < usuario.length; j++) {
-            usuario[j].mostrarInformacion(j + 1);
+            System.out.println(usuario[j]);
             System.out.println();
         }
     }

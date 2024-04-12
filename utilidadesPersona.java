@@ -66,7 +66,7 @@ public class utilidadesPersona {
     */
     public static void corregirDatos(int id, persona usuario, Scanner sc) {
         System.out.println("Datos actuales:");
-        usuario.mostrarInformacion(id);
+        System.out.println(usuario);
 
         System.out.println("¿Qué dato desea corregir?");
         System.out.println("1. Nombre");
@@ -254,7 +254,7 @@ public class utilidadesPersona {
         try {
             corregirDatos(numeroPersona, usuario[numeroPersona - 1], sc);
             System.out.println("Datos corregidos:");
-            usuario[numeroPersona - 1].mostrarInformacion(numeroPersona);
+            System.out.println(usuario[numeroPersona - 1]);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Error: El número de usuario especificado está fuera de rango.");
         }
