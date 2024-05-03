@@ -1,4 +1,5 @@
 package ClasePersona;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -34,18 +35,19 @@ public class inicio {
             }
         } while (!inputValido);
 
-        persona[] usuario = new persona[n];
-    
+        ArrayList<Persona> usuario = new ArrayList<Persona>(n);
+
         // Ciclo para instanciar n objetos de la clase persona
-        for (int i = 0; i < usuario.length; i++) {
-            usuario[i] = utilidadesPersona.crearObjeto(sc, i);
+        for (int i = 0; i < n; i++) {
+            Persona persona = utilidadesPersona.crearObjeto(i);
+            usuario.add(persona);
         }
 
         // Crear usuarioCopia usando el constructor copia
-        persona usuarioCopia = new persona(usuario[0]);
+        Persona usuarioCopia = new Persona(usuario.get(0));
 
         MenuManager menuManager = new MenuManager();
-        menuManager.menuManejoDatos(usuario, usuarioCopia, sc);
+        menuManager.menuManejoDatos(usuario, usuarioCopia);
 
         System.out.println("El programa ha finalizado");
         sc.close(); 

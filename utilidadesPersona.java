@@ -1,18 +1,20 @@
 package ClasePersona;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class utilidadesPersona {
+    public static Scanner sc = new Scanner(System.in);
     /**
-     * Crea un objeto de tipo persona con los datos ingresados por el usuario.
+     * Crea un objeto de tipo Persona con los datos ingresados por el usuario.
      * 
      * @param sc el objeto Scanner utilizado para leer la entrada del usuario.
      * @param i el índice del usuario actual.
-     * @return el objeto persona creado con los datos ingresados.
+     * @return el objeto Persona creado con los datos ingresados.
      */
-    public static persona crearObjeto(Scanner sc, int i) {
+    public static Persona crearObjeto(int i) {
         boolean exception = false;
-        persona nuevoUsuario = null;
+        Persona nuevoUsuario = null;
         do {
             System.out.println("*--------------------------------------------------------------------*");
             System.out.println("Ingrese los datos del usuario " + (i + 1) + ":");
@@ -46,7 +48,7 @@ public class utilidadesPersona {
 
             exception = true;
 
-            nuevoUsuario = new persona(nombre, apellidoPaterno, apellidoMaterno, edad, genero, domicilio, estatura);
+            nuevoUsuario = new Persona(nombre, apellidoPaterno, apellidoMaterno, edad, genero, domicilio, estatura);
         } catch (InputMismatchException e) {
             System.out.println("Error: Entrada no válida. Por favor, ingrese un valor válido.");
             sc.nextLine(); // Limpiar el búfer del scanner
@@ -61,10 +63,10 @@ public class utilidadesPersona {
     * Corrige los datos de un usuario en base a la opción seleccionada.
     *
     * @param id el ID del usuario
-    * @param usuario el objeto persona que representa al usuario
+    * @param usuario el objeto Persona que representa al usuario
     * @param sc el objeto Scanner para leer la entrada del usuario
     */
-    public static void corregirDatos(int id, persona usuario, Scanner sc) {
+    public static void corregirDatos(int id, Persona usuario) {
         System.out.println("Datos actuales:");
         System.out.println(usuario);
 
@@ -123,12 +125,12 @@ public class utilidadesPersona {
 
 
     /**
-     * Muestra un menú para organizar y previsualizar los datos de un arreglo de personas.
+     * Muestra un menú para organizar y previsualizar los datos de un arreglo de Personas.
      * 
-     * @param usuario el arreglo de personas a organizar y previsualizar
+     * @param usuario el arreglo de Personas a organizar y previsualizar
      * @param sc el objeto Scanner utilizado para leer la entrada del usuario
      */
-    public static void menuOrganizar(persona[] usuario, Scanner sc) {
+    public static void menuOrganizar(ArrayList<Persona> usuario) {
         char opciones;
         do {
             try {
@@ -147,28 +149,28 @@ public class utilidadesPersona {
                         System.out.println("Se muestran datos ordenados por edad de mayor a menor");
                         ordenarPorEdad = true;
                         ordenarMayorAMenor = true;
-                        persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
+                        Persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
                         MenuManager.cicloDatos(usuario);
                         break;
                     case 'B':
                         System.out.println("Se muestran datos ordenados por edad de menor a mayor");
                         ordenarPorEdad = true;
                         ordenarMayorAMenor = false;
-                        persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
+                        Persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
                         MenuManager.cicloDatos(usuario);
                         break;
                     case 'C':
                         System.out.println("Se muestran datos ordenados por apellido paterno de mayor a menor");
                         ordenarPorEdad = false;
                         ordenarMayorAMenor = true;
-                        persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
+                        Persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
                         MenuManager.cicloDatos(usuario);
                         break;
                     case 'D':
                         System.out.println("Se muestran datos ordenados por apellido paterno de menor a mayor");
                         ordenarPorEdad = false;
                         ordenarMayorAMenor = false;
-                        persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
+                        Persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
                         MenuManager.cicloDatos(usuario);
                         break;
                     case 'E':
@@ -187,12 +189,12 @@ public class utilidadesPersona {
 
 
     /**
-     * Muestra un menú para corregir los datos de una persona en base a diferentes opciones de búsqueda.
+     * Muestra un menú para corregir los datos de una Persona en base a diferentes opciones de búsqueda.
      * 
-     * @param usuario el arreglo de personas
+     * @param usuario el arreglo de Personas
      * @param sc el objeto Scanner para leer la entrada del usuario
      */
-    public static void menuCorregir(persona[] usuario, Scanner sc) {
+    public static void menuCorregir(ArrayList<Persona> usuario) {
         char opcion;
         int numeroPersona;
 
@@ -206,21 +208,21 @@ public class utilidadesPersona {
 
                 switch (opcion) {
                     case 'A':
-                        System.out.print("Ingrese el número de la persona que desea corregir (1-" + usuario.length + "): ");
+                        System.out.print("Ingrese el número de la Persona que desea corregir (1-" + usuario.size() + "): ");
                         numeroPersona = sc.nextInt();
                         sc.nextLine();
-                        envioCorregirDatos(usuario, numeroPersona, sc);
+                        envioCorregirDatos(usuario, numeroPersona);
                         break;
                     case 'B':
-                        System.out.println("Ingresa el/los nombre(s) y apellido paterno de la persona que desea corregir");
+                        System.out.println("Ingresa el/los nombre(s) y apellido paterno de la Persona que desea corregir");
                         String nombreBusqueda = sc.nextLine();
                         String apellidoBusqueda = sc.nextLine();
                         boolean encontrado = false;
 
-                        for (int x = 0; x < usuario.length; x++) {
-                            if (nombreBusqueda.equalsIgnoreCase(usuario[x].nombre) && apellidoBusqueda.equalsIgnoreCase(usuario[x].apellidoPaterno)) {
+                        for (int x = 0; x < usuario.size(); x++) {
+                            if (nombreBusqueda.equalsIgnoreCase(usuario.get(x).nombre) && apellidoBusqueda.equalsIgnoreCase(usuario.get(x).apellidoPaterno)) {
                                 numeroPersona = x + 1;
-                                envioCorregirDatos(usuario, numeroPersona, sc);
+                                envioCorregirDatos(usuario, numeroPersona);
                                 encontrado = true;
                                 break;
                             }
@@ -244,17 +246,17 @@ public class utilidadesPersona {
     }
 
     /**
-     * Envía los datos de una persona para corregirlos y muestra los datos corregidos.
+     * Envía los datos de una Persona para corregirlos y muestra los datos corregidos.
      * 
-     * @param usuario el arreglo de personas
-     * @param numeroPersona el número de la persona a corregir
+     * @param usuario el arreglo de Personas
+     * @param numeroPersona el número de la Persona a corregir
      * @param sc el objeto Scanner para leer la entrada del usuario
      */
-    public static void envioCorregirDatos(persona[] usuario, int numeroPersona, Scanner sc) {
+    public static void envioCorregirDatos(ArrayList<Persona> usuario, int numeroPersona) {
         try {
-            corregirDatos(numeroPersona, usuario[numeroPersona - 1], sc);
+            corregirDatos(numeroPersona, usuario.get(numeroPersona - 1));
             System.out.println("Datos corregidos:");
-            System.out.println(usuario[numeroPersona - 1]);
+            System.out.println(usuario.get(numeroPersona - 1));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Error: El número de usuario especificado está fuera de rango.");
         }

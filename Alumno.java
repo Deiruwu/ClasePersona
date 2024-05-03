@@ -1,6 +1,6 @@
 package ClasePersona;
 
-public class Alumno extends persona {
+public class Alumno extends Persona {
     long numeroContro = 0;
     int semestre = 0;
     String carrera = null;
@@ -19,16 +19,11 @@ public class Alumno extends persona {
         super();
     }
 
-    public static void main(String[] args) {
-        Alumno alumno = new Alumno("Juan", "Pérez", "García", 20, 'M', "Calle 123", 1.70, 123456789, 3, "Ing. en Sistemas", 90);
-        System.out.println(alumno);
-        Alumno alumno2 = new Alumno();
-        System.out.println(alumno2);
-    }
+
 
     @Override
     public String toString() {
-        return String.format("Alumno: \n\t%s\n\tNumero de contro: %d\n\tSemestre: %d\n\tCarrera: %s\n\tCalificacion: %d\n\t ",
+        return String.format("Alumno: \n\t%s\n\tNumero de contro: %d\n\tSemestre: %d\n\tCarrera: %s\n\tCalificacion: %d\n\t",
         super.toString(),numeroContro, semestre, carrera, calificacion);
     }
 }

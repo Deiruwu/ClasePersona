@@ -1,16 +1,18 @@
 package ClasePersona;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-class MenuManager {
+public class MenuManager {
+    Scanner sc = new Scanner(System.in);
     /**
      * Método que muestra el menú de manejo de datos y realiza las operaciones correspondientes.
      * 
-     * @param usuario       Arreglo de objetos de tipo persona que contiene los usuarios.
-     * @param usuarioCopia  Objeto de tipo persona que representa una copia del usuario.
+     * @param usuario       Arreglo de objetos de tipo Persona que contiene los usuarios.
+     * @param usuarioCopia  Objeto de tipo Persona que representa una copia del usuario.
      * @param sc            Objeto de tipo Scanner utilizado para leer la entrada del usuario.
      */
-    public void menuManejoDatos(persona[] usuario, persona usuarioCopia, Scanner sc) {
+    public void menuManejoDatos(ArrayList<Persona> usuario, Persona usuarioCopia){
         char opcion;
 
         System.out.println("*----------------------Menú de manejo de datos-----------------------*");
@@ -22,10 +24,10 @@ class MenuManager {
 
             switch (opcion) {
                 case 'A':
-                    menuOrganizar(usuario, sc);
+                    menuOrganizar(usuario);
                     break;
                 case 'B':
-                    menuCorregir(usuario, sc);
+                    menuCorregir(usuario);
                     break;
                 case 'C':
                     break;
@@ -40,12 +42,12 @@ class MenuManager {
     }
 
     /**
-     * Muestra un menú para organizar y previsualizar los datos de un arreglo de personas.
+     * Muestra un menú para organizar y previsualizar los datos de un arreglo de Personas.
      * 
-     * @param usuario el arreglo de personas a organizar y previsualizar
+     * @param usuario el arreglo de Personas a organizar y previsualizar
      * @param sc el objeto Scanner utilizado para leer la entrada del usuario
      */
-    public void menuOrganizar(persona[] usuario, Scanner sc) {
+    public void menuOrganizar(ArrayList<Persona> usuario) {
         char opcion;
         do {
             System.out.println("¿Cómo deseas previsualizar los datos?");
@@ -63,28 +65,28 @@ class MenuManager {
                     System.out.println("Se muestran datos ordenados por edad de mayor a menor");
                     ordenarPorEdad = true;
                     ordenarMayorAMenor = true;
-                    persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
+                    Persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
                     cicloDatos(usuario);
                     break;
                 case 'B':
                     System.out.println("Se muestran datos ordenados por edad de menor a mayor");
                     ordenarPorEdad = true;
                     ordenarMayorAMenor = false;
-                    persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
+                    Persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
                     cicloDatos(usuario);
                     break;
                 case 'C':
                     System.out.println("Se muestran datos ordenados por apellido paterno de mayor a menor");
                     ordenarPorEdad = false;
                     ordenarMayorAMenor = true;
-                    persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
+                    Persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
                     cicloDatos(usuario);
                     break;
                 case 'D':
                     System.out.println("Se muestran datos ordenados por ");
                     ordenarPorEdad = false;
                     ordenarMayorAMenor = false;
-                    persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
+                    Persona.ordenamiento(usuario, ordenarPorEdad, ordenarMayorAMenor);
                     cicloDatos(usuario);
                     break;
                 case 'E':
@@ -97,12 +99,12 @@ class MenuManager {
     }
 
     /**
-     * Método que muestra un menú para corregir los datos de una persona.
+     * Método que muestra un menú para corregir los datos de una Persona.
      * 
-     * @param usuario el arreglo de personas
+     * @param usuario el arreglo de Personas
      * @param sc el objeto Scanner para leer la entrada del usuario
      */
-    public void menuCorregir(persona[] usuario, Scanner sc) {
+    public void menuCorregir(ArrayList<Persona> usuario) {
         char opcion;
         int numeroPersona;
 
@@ -116,10 +118,10 @@ class MenuManager {
             try {
                 switch (opcion) {
                     case 'A':
-                        System.out.print("Ingrese el número de la persona que desea corregir (1-" + usuario.length + "): ");
+                        System.out.print("Ingrese el número de la Persona que desea corregir (1-" + usuario.size() + "): ");
                         numeroPersona = sc.nextInt();
                         sc.nextLine();
-                        utilidadesPersona.envioCorregirDatos(usuario, numeroPersona, sc);
+                        utilidadesPersona.envioCorregirDatos(usuario, numeroPersona);
                         break;
                     case 'B':
                         System.out.println("Ingresa el/los nombre(s): ");
@@ -128,10 +130,10 @@ class MenuManager {
                         String apellidoBusqueda = sc.nextLine();
                         boolean encontrado = false;
 
-                        for (int x = 0; x < usuario.length; x++) {
-                            if (nombreBusqueda.equalsIgnoreCase(usuario[x].nombre) && apellidoBusqueda.equalsIgnoreCase(usuario[x].apellidoPaterno)) {
+                        for (int x = 0; x < usuario.size(); x++) {
+                            if (nombreBusqueda.equalsIgnoreCase(usuario.get(x).nombre) && apellidoBusqueda.equalsIgnoreCase(usuario.get(x).apellidoPaterno)) {
                                 numeroPersona = x + 1;
-                                utilidadesPersona.envioCorregirDatos(usuario, numeroPersona, sc);
+                                utilidadesPersona.envioCorregirDatos(usuario, numeroPersona);
                                 encontrado = true;
                                 break;
                             }
@@ -159,15 +161,15 @@ class MenuManager {
     }
 
     /**
-     * Método que muestra los datos de un arreglo de objetos persona.
+     * Método que muestra los datos de un arreglo de objetos Persona.
      * 
-     * @param usuario El arreglo de objetos persona.
+     * @param usuario El arreglo de objetos Persona.
      */
-    public static void cicloDatos(persona[] usuario) {
+    public static void cicloDatos(ArrayList<Persona> usuario) {
         //ciclo para mostrar datos
         System.out.println("*--------------------------------------------*");
-        for (int j = 0; j < usuario.length; j++) {
-            System.out.println(usuario[j]);
+        for (int j = 0; j < usuario.size(); j++) {
+            System.out.println(usuario.get(j));
             System.out.println();
         }
     }

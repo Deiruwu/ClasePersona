@@ -1,8 +1,10 @@
 package ClasePersona;
+import java.util.ArrayList;
     /**
      * Clase que representa a una persona.
      */
-public class persona {
+    
+public class Persona {
     String nombre;
     public String apellidoPaterno;
     public String apellidoMaterno;  
@@ -22,7 +24,7 @@ public class persona {
      * @param domicilio el domicilio de la persona
      * @param estatura la estatura de la persona
      */
-    public persona(String nombre, String apellidoPaterno, String apellidoMaterno, int edad, char genero, String domicilio, double estatura) {
+    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, int edad, char genero, String domicilio, double estatura) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -32,7 +34,7 @@ public class persona {
         this.estatura = estatura;
     }
 
-    public persona() {
+    public Persona() {
         this.nombre = null;
         this.apellidoPaterno =null;
         this.apellidoMaterno = null;
@@ -47,7 +49,7 @@ public class persona {
      * 
      * @param usuario1 objeto de tipo persona que se utilizará para inicializar los atributos de la nueva instancia.
      */
-    public persona (persona usuario1){
+    public Persona (Persona usuario1){
         this.nombre=usuario1.nombre;
         this.apellidoPaterno=usuario1.apellidoPaterno;
         this.apellidoMaterno=usuario1.apellidoMaterno;
@@ -60,32 +62,21 @@ public class persona {
     /**
      * Ordena un arreglo de objetos persona según el criterio especificado.
      * 
-     * @param usuario       El arreglo de objetos persona a ordenar.
+     * @param usuarios      La lista de objetos persona a ordenar.
      * @param edadOApellido Un valor booleano que indica si se debe ordenar por edad (true) o por apellido (false).
      * @param Mayor_Menor   Un valor booleano que indica si se debe ordenar de mayor a menor (true) o de menor a mayor (false).
      */
-    public static void ordenamiento(persona[] usuario, boolean edadOApellido, boolean Mayor_Menor) {
-    for (int i = 0; i< usuario.length; i++) {
-        for (int j = 0; j < usuario.length -1; j++) {
-            boolean intercambiar = false;
-
+    public static void ordenamiento(ArrayList<Persona> usuarios, boolean edadOApellido, boolean Mayor_Menor) {
+        usuarios.sort((p1, p2) -> {
             if (edadOApellido) {
-                    int comparacionEdad = usuario[j].edad - usuario[j + 1].edad;
-                    intercambiar = (Mayor_Menor) ? comparacionEdad < 0 : comparacionEdad > 0;
-                } else {
-                    int comparacionApellido = usuario[j].apellidoPaterno.compareTo(usuario[j + 1].apellidoPaterno);
-                    intercambiar = (Mayor_Menor) ? comparacionApellido < 0 : comparacionApellido > 0;
-                    }
-
-            if (intercambiar) {
-                persona temp = usuario[j];
-                usuario[j] = usuario[j+1];
-                usuario[j+1] = temp;
-                }
+                int comparacionEdad = p1.edad - p2.edad;
+                return Mayor_Menor ? comparacionEdad : -comparacionEdad;
+            } else {
+                int comparacionApellido = p1.apellidoPaterno.compareTo(p2.apellidoPaterno);
+                return Mayor_Menor ? comparacionApellido : -comparacionApellido;
             }
-        }
+        });
     }
-
     /**
      * Muestra la información de una persona.
      * 
